@@ -23,3 +23,8 @@ systemctl start docker
 
 # Run the web application and set the hostname environment variable
 docker run -e hostname=$(hostname) -p 80:80 --restart always -d lrakai/tetris:hostname
+
+
+
+
+
