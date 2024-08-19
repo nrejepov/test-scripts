@@ -1,4 +1,3 @@
-#!/bin/sh
 yum install -y wget
 yum install -y yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -9,7 +8,7 @@ wget -O /certs/cert.pem https://raw.githubusercontent.com/cloudacademy/docker-so
 wget -O /certs/key.pem https://raw.githubusercontent.com/cloudacademy/docker-software-delivery/master/.certs/server.key
 mkdir -p /etc/docker
 echo '{"hosts":["unix:///var/run/docker.sock","tcp://0.0.0.0:2376"],"tls":true,"tlsverify":true,"tlscacert":"/certs/ca.pem","tlscert":"/certs/cert.pem","tlskey":"/certs/key.pem"}' > /etc/docker/daemon.json
-sed -i "s#ExecStart=/usr/bin/dockerd -H fd://#ExecStart=/usr/bin/dockerd#g" /usr/lib/systemd/system/docker.service
+sed -i sed -i 's#^ExecStart=/usr/bin/dockerd -H fd://#ExecStart=/usr/bin/dockerd#g' /usr/lib/systemd/system/docker.service
 systemctl enable docker
 systemctl start docker
 usermod -aG docker student
